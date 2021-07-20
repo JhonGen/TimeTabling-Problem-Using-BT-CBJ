@@ -191,10 +191,10 @@ void backtracking_cpu(solution_t *solution, int lvl, int nE, int nS, int nT, int
 
 int main(){
     FILE *exm, *stu;
-    exm = fopen("St.Andrews83.exm", "r+");
-    stu = fopen("St.Andrews83.stu", "r+");
-    int nE = findSize("St.Andrews83.exm");
-    int nS = findSize("St.Andrews83.stu");
+    exm = fopen("YorkMills83.exm", "r+");
+    stu = fopen("YorkMills83.stu", "r+");
+    int nE = findSize("YorkMills83.exm");
+    int nS = findSize("YorkMills83.stu");
     int nT = nE;
     //student_t *students=(student_t *)malloc(sizeof(student_t));
     student_t *students=NULL;
