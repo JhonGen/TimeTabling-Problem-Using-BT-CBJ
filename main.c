@@ -165,6 +165,8 @@ void backtracking_cpu(solution_t *solution, int lvl, int nE, int nS, int nT, int
     if(lvl == nE){
         if(feasibleSolution(solution,lvl-1,conflict_matrix,nE)){
             solution->score_min_ts = score_solution_min_timeslots(solution, nT);
+            printf("\ntimeslots solucion factible: %d\n",solution->score_min_ts);
+            printf("score solucion factible: %f\n",solution->score_spread);
             if(solution->score_min_ts <= bestSolution->score_min_ts){
                 solution->score_spread = score_solution_spread_timeslots(solution, nS, students);
                 if(compare_solutions(solution, bestSolution)){
@@ -172,8 +174,8 @@ void backtracking_cpu(solution_t *solution, int lvl, int nE, int nS, int nT, int
                     for(int i=0; i<nE;i++){
                      bestSolution->solution[i]= solution->solution[i];
                     }
-                    printf("\ntimeslots nueva solucion: %d\n",solution->score_min_ts);
-                    printf("score nueva solucion: %f\n",solution->score_spread);
+                    printf("\ntimeslots nueva mejor solucion: %d\n",solution->score_min_ts);
+                    printf("score nueva mejor solucion: %f\n",solution->score_spread);
                     bestSolution->score_min_ts=solution->score_min_ts;
                     bestSolution->score_spread=solution->score_spread;
                     
