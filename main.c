@@ -227,6 +227,7 @@ int main(){
         printf("%d ", conflict_matrix[i]);
         if((i+1)%nE==0){
             printf("\n");
+        }
     }
     //solution_t *solution, int lvl, int nE, int nS,int nT, int *conflict_matrix, student_t *students
     bestSolution = (solution_t*)malloc(sizeof(solution_t));
