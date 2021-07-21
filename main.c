@@ -172,8 +172,11 @@ void backtracking_cpu(solution_t *solution, int lvl, int nE, int nS, int nT, int
                     for(int i=0; i<nE;i++){
                      bestSolution->solution[i]= solution->solution[i];
                     }
+                    printf("\ntimeslots nueva solucion: %d\n",solution->score_min_ts);
+                    printf("score nueva solucion: %f\n",solution->score_spread);
                     bestSolution->score_min_ts=solution->score_min_ts;
                     bestSolution->score_spread=solution->score_spread;
+                    
                 }
             }
         }
