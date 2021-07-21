@@ -109,9 +109,9 @@ bool feasibleSolution(solution_t *solution, int lvl, int *conflict_matrix, int n
     return true;
 }
 
-int score_solution_min_timeslots(solution_t *solution, int nT){
+int score_solution_min_timeslots(solution_t *solution, int nE){
     int max = 0;
-    for(int i=0; i<nT; i++){
+    for(int i=0; i<nE; i++){
         if(solution->solution[i] > max){
             max = solution->solution[i];
         }
@@ -164,9 +164,7 @@ bool compare_solutions(solution_t *solution1, solution_t *solution2){
 void backtracking_cpu(solution_t *solution, int lvl, int nE, int nS, int nT, int *conflict_matrix, student_t *students){
     if(lvl == nE){
         if(feasibleSolution(solution,lvl-1,conflict_matrix,nE)){
-            solution->score_min_ts = score_solution_min_timeslots(solution, nT);
-            printf("\ntimeslots solucion factible: %d\n",solution->score_min_ts);
-            printf("score solucion factible: %f\n",solution->score_spread);
+            solution->score_min_ts = score_solution_min_timeslots(solution, nE);
             if(solution->score_min_ts <= bestSolution->score_min_ts){
                 solution->score_spread = score_solution_spread_timeslots(solution, nS, students);
                 if(compare_solutions(solution, bestSolution)){
@@ -225,12 +223,11 @@ int main(){
     //printstudents(students);
     int *conflict_matrix = create_conflict_matrix(students, nE);
 
-    /*for(int i=0; i<(nE*nE);i++){
+    for(int i=0; i<(nE*nE);i++){
         printf("%d ", conflict_matrix[i]);
         if((i+1)%nE==0){
             printf("\n");
         }
-    }*/
     //solution_t *solution, int lvl, int nE, int nS,int nT, int *conflict_matrix, student_t *students
     bestSolution = (solution_t*)malloc(sizeof(solution_t));
     bestSolution->solution = (int *)malloc(sizeof(int)*nE);
@@ -240,7 +237,7 @@ int main(){
     initSolution->solution= (int *)malloc(sizeof(int)*nE);
     backtracking_cpu(initSolution, 0, nE, nS, nT, conflict_matrix, students);    
     for(int i=0; i<nE; i++){
-        printf("%d ", bestSolution->solution[i]);
+        printf("examen %d : %d\n ", i, bestSolution->solution[i]);
     } 
     printf("\ntimeslots: %d\n",bestSolution->score_min_ts);
     printf("score: %f\n",bestSolution->score_spread);
